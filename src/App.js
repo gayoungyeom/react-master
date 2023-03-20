@@ -26,12 +26,23 @@ const Box = styled.div`
   justify-content: center;
   align-items: center;
   animation: ${rotationAnimation} 1s linear infinite;
+  span {
+    font-size: 36px;
+    &:hover {
+      font-size: 48px;
+    }
+    &:active {
+      opacity: 0;
+    }
+  }
 `;
 
 function App() {
   return (
     <Wrapper>
-      <Box></Box>
+      <Box>
+        <span>😎</span>
+      </Box>
     </Wrapper>
   );
 }
