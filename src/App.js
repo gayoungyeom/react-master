@@ -10,7 +10,7 @@ const Input = styled.input.attrs({ required: true })`
 
 function App() {
   return (
-    <Father>
+    <Father as="header">
       <Input />
       <Input />
       <Input />
