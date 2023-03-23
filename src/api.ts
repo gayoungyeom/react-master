@@ -1,0 +1,4 @@
+export const fetchCoins = async () => {
+  const response = await fetch('https://api.coinpaprika.com/v1/coins');
+  return await response.json();
+};
