@@ -11,6 +11,7 @@ interface IForm {
   username: string;
   password: string;
   password1: string;
+  extraError?: string;
 }
 
 function ToDoList() {
@@ -18,10 +19,20 @@ function ToDoList() {
     register,
     handleSubmit,
     formState: { errors },
+    setError,
   } = useForm<IForm>();
 
   const onValid = (data: IForm) => {
-    console.log(data);
+    //API로 검증해야 하는 validtion (submit 눌렀을 때 검증)
+    if (data.password !== data.password1) {
+      setError(
+        'password1',
+        { message: 'Password are not the same.' },
+        { shouldFocus: true }
+      );
+    }
+
+    setError('extraError', { message: 'Server offline.' });
   };
 
   return (
@@ -85,6 +96,7 @@ function ToDoList() {
         />
         <Error>{errors?.password1?.message}</Error>
         <button>Add</button>
+        <Error>{errors?.extraError?.message}</Error>
       </form>
     </div>
   );
