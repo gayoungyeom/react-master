@@ -2,32 +2,19 @@ import { ChangeEvent, FormEvent, useState } from 'react';
 import { useForm } from 'react-hook-form';
 
 function ToDoList() {
-  // const {} = useForm();
-  const [toDo, setTodo] = useState('');
-  const [toDoError, setToDoError] = useState('');
-
-  const onChange = (e: ChangeEvent<HTMLInputElement>) => {
-    const {
-      currentTarget: { value },
-    } = e;
-    setTodo(value);
-    setToDoError('');
-  };
-
-  const onSubmit = (e: FormEvent<HTMLFormElement>) => {
-    e?.preventDefault();
-    if (toDo.length < 10) {
-      return setToDoError('TODO should be longer');
-    }
-    console.log('submit');
-  };
+  const { register, watch } = useForm();
+  console.log(watch());
 
   return (
     <div>
-      <form onSubmit={onSubmit}>
-        <input onChange={onChange} value={toDo} />
+      <form>
+        <input {...register('email')} placeholder="email" />
+        <input {...register('firstName')} placeholder="firstName" />
+        <input {...register('lastName')} placeholder="lastName" />
+        <input {...register('username')} placeholder="username" />
+        <input {...register('password')} placeholder="password" />
+        <input {...register('password1')} placeholder="password1" />
         <button>Add</button>
-        {toDoError}
       </form>
     </div>
   );
