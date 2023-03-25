@@ -53,7 +53,15 @@ function ToDoList() {
         />
         <Error>{errors?.email?.message}</Error>
         <input
-          {...register('firstName', { required: 'Password is required.' })}
+          {...register('firstName', {
+            required: 'Password is required.',
+            validate: {
+              noNico: (value) =>
+                value.includes('nico') ? 'no nicos allowd' : true,
+              noNick: (value) =>
+                value.includes('nick') ? 'no nick allowed' : true,
+            },
+          })}
           placeholder="firstName"
         />
         <Error>{errors?.firstName?.message}</Error>
