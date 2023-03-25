@@ -20,7 +20,11 @@ function ToDoList() {
     handleSubmit,
     formState: { errors },
     setError,
-  } = useForm<IForm>();
+  } = useForm<IForm>({
+    defaultValues: {
+      email: '@naver.com',
+    },
+  });
 
   const onValid = (data: IForm) => {
     //API로 검증해야 하는 validtion (submit 눌렀을 때 검증)
