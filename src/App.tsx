@@ -1,5 +1,5 @@
-import styled, { createGlobalStyle, css } from 'styled-components';
-import SelectorTest from './SelecterTest';
+import { createGlobalStyle, css } from 'styled-components';
+import DnDTest from './DnDTest';
 
 const GlobalStyle = createGlobalStyle`
 ${css`
@@ -151,7 +151,7 @@ function App() {
   return (
     <>
       <GlobalStyle />
-      <SelectorTest />
+      <DnDTest />
     </>
   );
 }
