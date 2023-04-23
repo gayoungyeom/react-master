@@ -7,13 +7,26 @@ const DnDTest = () => {
     <DragDropContext onDragEnd={onDragEnd}>
       <div>
         <Droppable droppableId="one">
-          {() => (
-            <ul>
+          {(provided) => (
+            <ul ref={provided.innerRef} {...provided.droppableProps}>
               <Draggable draggableId="first" index={0}>
-                {() => <li>One</li>}
+                {(provided) => (
+                  <li
+                    ref={provided.innerRef}
+                    {...provided.dragHandleProps}
+                    {...provided.draggableProps}
+                  >
+                    Handling with All
+                  </li>
+                )}
               </Draggable>
               <Draggable draggableId="second" index={1}>
-                {() => <li>Two</li>}
+                {(provided) => (
+                  <li ref={provided.innerRef} {...provided.draggableProps}>
+                    <span {...provided.dragHandleProps}>🔥</span>
+                    Handling with fire-icon only
+                  </li>
+                )}
               </Draggable>
             </ul>
           )}
