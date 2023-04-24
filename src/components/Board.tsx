@@ -4,10 +4,16 @@ import styled from 'styled-components';
 
 const Wrapper = styled.div`
   padding: 20px 10px;
-  padding-top: 30px;
   background-color: ${(props) => props.theme.boardColor};
   border-radius: 5px;
-  min-height: 200px;
+  min-height: 300px;
+`;
+
+const Title = styled.h2`
+  text-align: center;
+  font-weight: 600;
+  margin-bottom: 10px;
+  font-size: 18px;
 `;
 
 interface BoardProps {
@@ -20,6 +26,7 @@ const Board = ({ toDos, boardId }: BoardProps) => {
     <Droppable droppableId={boardId}>
       {(provided) => (
         <Wrapper ref={provided.innerRef} {...provided.droppableProps}>
+          <Title>{boardId}</Title>
           {toDos.map((todo, index) => (
             <DraggableCard key={todo} todo={todo} index={index} />
           ))}
