@@ -1,6 +1,7 @@
 import { Droppable } from 'react-beautiful-dnd';
 import DraggableCard from './DraggableCard';
 import styled from 'styled-components';
+import { TodoType } from '../atoms';
 
 const Wrapper = styled.div`
   padding: 20px 10px;
@@ -36,7 +37,7 @@ const Area = styled.div<IAreaProps>`
 `;
 
 interface BoardProps {
-  toDos: string[];
+  toDos: TodoType[];
   boardId: string;
 }
 
@@ -52,8 +53,13 @@ const Board = ({ toDos, boardId }: BoardProps) => {
             isDraggingOver={snapshot.isDraggingOver}
             isDraggingFromThis={Boolean(snapshot.draggingFromThisWith)}
           >
-            {toDos.map((todo, index) => (
-              <DraggableCard key={todo} todo={todo} index={index} />
+            {toDos.map((toDo, index) => (
+              <DraggableCard
+                key={toDo.id}
+                index={index}
+                toDoId={toDo.id}
+                toDoText={toDo.text}
+              />
             ))}
             {provided.placeholder}
           </Area>

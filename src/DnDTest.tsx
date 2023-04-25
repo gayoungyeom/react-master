@@ -28,15 +28,16 @@ const DnDTest = () => {
 
   const onDragEnd = (info: DropResult) => {
     console.log(info);
-    const { destination, source, draggableId } = info;
+    const { destination, source } = info;
     if (!destination) return;
 
     if (destination.droppableId === source.droppableId) {
       //same board movement
       setToDos((allBoards) => {
         const boardCopy = [...allBoards[source.droppableId]];
+        const taskObj = boardCopy[source.index];
         boardCopy.splice(source.index, 1); //1. 이동 전 위치에서 아이템 제거
-        boardCopy.splice(destination?.index, 0, draggableId); //2. 이동 후 위치에 아이템 추가
+        boardCopy.splice(destination?.index, 0, taskObj); //2. 이동 후 위치에 아이템 추가
         return {
           ...allBoards,
           [source.droppableId]: boardCopy,
@@ -46,10 +47,11 @@ const DnDTest = () => {
       //cross board movement
       setToDos((allBoards) => {
         const sourceBoard = [...allBoards[source.droppableId]];
+        const taskObj = sourceBoard[source.index];
         sourceBoard.splice(source.index, 1);
 
         const destinBoard = [...allBoards[destination.droppableId]];
-        destinBoard.splice(destination?.index, 0, draggableId);
+        destinBoard.splice(destination?.index, 0, taskObj);
 
         return {
           ...allBoards,

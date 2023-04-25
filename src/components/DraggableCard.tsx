@@ -6,6 +6,8 @@ const Card = styled.div<{ isDragging: boolean }>`
   border-radius: 5px;
   margin-bottom: 5px;
   padding: 10px 10px;
+  font-weight: 400;
+  color: ${(props) => (props.isDragging ? 'white' : 'black')};
   background-color: ${(props) =>
     props.isDragging ? '#EA5455' : props.theme.cardColor};
   box-shadow: ${(props) =>
@@ -13,13 +15,14 @@ const Card = styled.div<{ isDragging: boolean }>`
 `;
 
 interface DraggableCardProps {
-  todo: string;
+  toDoId: number;
+  toDoText: string;
   index: number;
 }
 
-const DraggableCard = ({ todo, index }: DraggableCardProps) => {
+const DraggableCard = ({ toDoId, toDoText, index }: DraggableCardProps) => {
   return (
-    <Draggable draggableId={todo} index={index}>
+    <Draggable draggableId={toDoId + ''} index={index}>
       {(provided, snapshot) => (
         <Card
           ref={provided.innerRef}
@@ -27,7 +30,7 @@ const DraggableCard = ({ todo, index }: DraggableCardProps) => {
           {...provided.draggableProps}
           isDragging={snapshot.isDragging}
         >
-          {todo}
+          {toDoText}
         </Card>
       )}
     </Draggable>

@@ -1,14 +1,18 @@
 import { atom } from 'recoil';
 
+export type TodoType = {
+  id: number;
+  text: string;
+};
 interface toDoStateProps {
-  [key: string]: string[];
+  [key: string]: TodoType[];
 }
 
 export const toDoState = atom<toDoStateProps>({
   key: 'toDo',
   default: {
-    Todo: ['a', 'b'],
-    Doing: ['c', 'd', 'e'],
-    Done: ['f'],
+    Todo: [{ id: 1, text: 'hello' }],
+    Doing: [],
+    Done: [],
   },
 });
