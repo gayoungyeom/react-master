@@ -1,5 +1,5 @@
 import { createGlobalStyle, css } from 'styled-components';
-import DnDTest from './DnDTest';
+import TodoDnD from './TodoDnD';
 
 const GlobalStyle = createGlobalStyle`
 ${css`
@@ -151,7 +151,7 @@ function App() {
   return (
     <>
       <GlobalStyle />
-      <DnDTest />
+      <TodoDnD />
     </>
   );
 }

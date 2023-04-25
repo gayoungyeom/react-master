@@ -2,18 +2,25 @@ import { DragDropContext } from 'react-beautiful-dnd';
 import { useRecoilState } from 'recoil';
 import { toDoState } from './atoms';
 import Board from './components/Board';
+import TrashBox from './components/TrashBox';
 import styled from 'styled-components';
 
 import type { DropResult } from 'react-beautiful-dnd';
 
-const Wrapper = styled.div`
+const Layout = styled.div`
+  width: 100%;
   display: flex;
   max-width: 680px;
-  width: 100%;
   margin: 0 auto;
   justify-content: center;
   align-items: center;
   height: 100vh;
+`;
+
+const Container = styled.div`
+  width: 100%;
+  display: flex;
+  flex-direction: column;
 `;
 
 const Boards = styled.div`
@@ -31,7 +38,17 @@ const DnDTest = () => {
     const { destination, source } = info;
     if (!destination) return;
 
-    if (destination.droppableId === source.droppableId) {
+    if (destination.droppableId === 'trash') {
+      //trash board movement
+      setToDos((allBoards) => {
+        const boardCopy = [...allBoards[source.droppableId]];
+        boardCopy.splice(source.index, 1); //아이템 제거
+        return {
+          ...allBoards,
+          [source.droppableId]: boardCopy,
+        };
+      });
+    } else if (destination.droppableId === source.droppableId) {
       //same board movement
       setToDos((allBoards) => {
         const boardCopy = [...allBoards[source.droppableId]];
@@ -43,7 +60,7 @@ const DnDTest = () => {
           [source.droppableId]: boardCopy,
         };
       });
-    } else {
+    } else if (destination.droppableId !== source.droppableId) {
       //cross board movement
       setToDos((allBoards) => {
         const sourceBoard = [...allBoards[source.droppableId]];
@@ -63,15 +80,18 @@ const DnDTest = () => {
   };
 
   return (
-    <DragDropContext onDragEnd={onDragEnd}>
-      <Wrapper>
-        <Boards>
-          {Object.keys(toDos).map((boardId) => (
-            <Board key={boardId} boardId={boardId} toDos={toDos[boardId]} />
-          ))}
-        </Boards>
-      </Wrapper>
-    </DragDropContext>
+    <Layout>
+      <DragDropContext onDragEnd={onDragEnd}>
+        <Container>
+          <Boards>
+            {Object.keys(toDos).map((boardId) => (
+              <Board key={boardId} boardId={boardId} toDos={toDos[boardId]} />
+            ))}
+          </Boards>
+          <TrashBox />
+        </Container>
+      </DragDropContext>
+    </Layout>
   );
 };
 
