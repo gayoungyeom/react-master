@@ -14,13 +14,14 @@ const Layout = styled.div`
   margin: 0 auto;
   justify-content: center;
   align-items: center;
-  height: 100vh;
+  margin-top: 100px;
 `;
 
 const Container = styled.div`
   width: 100%;
   display: flex;
   flex-direction: column;
+  align-items: flex-end;
 `;
 
 const Boards = styled.div`
@@ -83,12 +84,12 @@ const DnDTest = () => {
     <Layout>
       <DragDropContext onDragEnd={onDragEnd}>
         <Container>
+          <TrashBox />
           <Boards>
             {Object.keys(toDos).map((boardId) => (
               <Board key={boardId} boardId={boardId} toDos={toDos[boardId]} />
             ))}
           </Boards>
-          <TrashBox />
         </Container>
       </DragDropContext>
     </Layout>

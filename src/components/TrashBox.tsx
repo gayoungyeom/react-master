@@ -4,8 +4,9 @@ import styled from 'styled-components';
 
 const Wrapper = styled.div`
   background-color: ${(props) => props.theme.boardColor};
-  margin-top: 30px;
-  height: 60px;
+  margin-bottom: 50px;
+  width: 50px;
+  height: 50px;
   border-radius: 50px;
 `;
 
@@ -22,11 +23,7 @@ const Area = styled.div<IAreaProps>`
   align-items: center;
   border-radius: 50px;
   background-color: ${(props) =>
-    props.isDraggingOver
-      ? '#F9F5EB'
-      : props.isDraggingFromThis
-      ? '#e8e4dc'
-      : 'transparent'};
+    props.isDraggingOver ? '#F9F5EB' : 'transparent'};
   transition: background-color 0.3s ease-in-out;
 `;
 
