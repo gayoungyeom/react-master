@@ -11,7 +11,7 @@ interface toDoStateProps {
 export const toDoState = atom<toDoStateProps>({
   key: 'toDo',
   default: {
-    Todo: [{ id: 1, text: 'hello' }],
+    Todo: [],
     Doing: [],
     Done: [],
   },
