@@ -1,4 +1,5 @@
 import { atom } from 'recoil';
+import { recoilPersist } from 'recoil-persist';
 
 export type TodoType = {
   id: number;
@@ -8,6 +9,11 @@ interface toDoStateProps {
   [key: string]: TodoType[];
 }
 
+const { persistAtom } = recoilPersist({
+  key: 'all-todo-persist',
+  storage: localStorage,
+});
+
 export const toDoState = atom<toDoStateProps>({
   key: 'toDo',
   default: {
@@ -15,4 +21,5 @@ export const toDoState = atom<toDoStateProps>({
     Doing: [],
     Done: [],
   },
+  effects_UNSTABLE: [persistAtom],
 });
