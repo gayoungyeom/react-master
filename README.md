@@ -8,3 +8,5 @@
 - TYPESCRIPT - https://github.com/gayoungyeom/react-master/pull/3
 - CRYPTO TRACKER - https://github.com/gayoungyeom/react-master/pull/4
 - STATE MANAGEMENT - https://github.com/gayoungyeom/react-master/pull/5
+- TRELLO CLONE - https://github.com/gayoungyeom/react-master/pull/6
+- REACT ROUTER V6 - https://github.com/gayoungyeom/react-master/pull/7
